@@ -1,558 +1,502 @@
 <?php
-$aMan  = array();
 
-$aPCat = array();
 
-$aCat  = array();
+if(!isset($_SESSION['admin_email'])){
 
-/// Manufacturers Code Starts ///
-
-if(isset($_REQUEST['man'])&&is_array($_REQUEST['man'])){
-
-foreach($_REQUEST['man'] as $sKey=>$sVal){
-
-if((int)$sVal!=0){
-
-$aMan[(int)$sVal] = (int)$sVal;
+echo "<script>window.open('login.php','_self')</script>";
 
 }
 
-}
+else {
 
-}
 
-/// Manufacturers Code Ends ///
-
-/// Products Categories Code Starts ///
-
-/*if(isset($_REQUEST['p_cat'])&&is_array($_REQUEST['p_cat'])){
-
-foreach($_REQUEST['p_cat'] as $sKey=>$sVal){
-
-if((int)$sVal!=0){
-
-$aPCat[(int)$sVal] = (int)$sVal;
-
-}
-
-}
-
-}
-
-/// Products Categories Code Ends ///
-
-/// Categories Code Starts ///
-
-if(isset($_REQUEST['cat'])&&is_array($_REQUEST['cat'])){
-
-foreach($_REQUEST['cat'] as $sKey=>$sVal){
-
-if((int)$sVal!=0){
-
-$aCat[(int)$sVal] = (int)$sVal;
-
-}
-
-}
-
-}*/
-
-/// Categories Code Ends ///
 
 
 ?>
 
-<div class="panel panel-default sidebar-menu"><!-- panel panel-default sidebar-menu Starts -->
+<nav class="navbar navbar-inverse navbar-fixed-top" ><!-- navbar navbar-inverse navbar-fixed-top Starts -->
 
-<div class="panel-heading"><!-- panel-heading Starts -->
+<div class="navbar-header" ><!-- navbar-header Starts -->
 
-<h3 class="panel-title"><!-- panel-title Starts -->
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse" ><!-- navbar-ex1-collapse Starts -->
 
-Manufacturers
 
-<div class="pull-right"><!-- pull-right Starts -->
+<span class="sr-only" >Toggle Navigation</span>
 
-<a href="#" style="color:black;">
+<span class="icon-bar" ></span>
 
-<span class="nav-toggle hide-show">
+<span class="icon-bar" ></span>
 
-Hide
+<span class="icon-bar" ></span>
 
-</span>
+
+</button><!-- navbar-ex1-collapse Ends -->
+
+<a class="navbar-brand" href="index.php?dashboard" >Admin Panel</a>
+
+
+</div><!-- navbar-header Ends -->
+
+<ul class="nav navbar-right top-nav" ><!-- nav navbar-right top-nav Starts -->
+
+<li class="dropdown" ><!-- dropdown Starts -->
+
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" ><!-- dropdown-toggle Starts -->
+
+<i class="fa fa-user" ></i>
+
+<?php echo $admin_name; ?> <b class="caret" ></b>
+
+
+</a><!-- dropdown-toggle Ends -->
+
+<!--<ul class="dropdown-menu" ><!-- dropdown-menu Starts
+
+<li><!-- li Starts 
+
+<a href="index.php?user_profile=<?php //echo $admin_id; ?>" >
+
+<i class="fa fa-fw fa-user" ></i> Profile
+
 
 </a>
 
-</div><!-- pull-right Ends -->
+</li><!-- li Ends 
 
-</h3><!-- panel-title Ends -->
+<li><!-- li Starts 
 
-</div><!-- panel-heading Ends -->
+<a href="index.php?view_products" >
 
-<div class="panel-collapse collapse-data"><!-- panel-collapse collapse-data starts -->
+<i class="fa fa-fw fa-envelope" ></i> Products 
 
-<div class="panel-body"><!-- panel-body Starts -->
-
-<div class="input-group"><!-- input-group Starts -->
-
-<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-manufacturer" placeholder="Filter Manufacturers">
+<span class="badge" ><?php //echo $count_products; ?></span>
 
 
-<a class="input-group-addon"> <i class="fa fa-search"></i> </a>
+</a>
 
-</div><!-- input-group Ends -->
+</li><!-- li Ends 
 
-</div><!-- panel-body Ends -->
+<li><!-- li Starts 
 
-<div class="panel-body scroll-menu"><!-- panel-body scroll-menu Starts -->
+<a href="index.php?view_customers" >
 
-<ul class="nav nav-pills nav-stacked category-menu" id="dev-manufacturer"><!-- nav nav-pills nav-stacked category-menu Starts -->
+<i class="fa fa-fw fa-gear" ></i> Customers
 
-<?php
+<span class="badge" ><?php //echo $count_customers; ?></span>
 
-$get_manfacturer = "select * from manufacturers where manufacturer_top='yes'";
 
-$run_manfacturer = mysqli_query($con,$get_manfacturer);
+</a>
 
-while($row_manfacturer = mysqli_fetch_array($run_manfacturer)){
+</li><!-- li Ends 
 
-$manufacturer_id = $row_manfacturer['manufacturer_id'];
+<li><!-- li Starts 
 
-$manufacturer_title = $row_manfacturer['manufacturer_title'];
+<a href="index.php?view_p_cats" >
 
-$manufacturer_image = $row_manfacturer['manufacturer_image'];
+<i class="fa fa-fw fa-gear" ></i> Product Categories
 
-if($manufacturer_image == ""){
+<span class="badge" ><?php //echo $count_p_categories; ?></span>
 
-}
-else{
 
-$manufacturer_image = "
+</a>
 
-<img src='admin_area/other_images/$manufacturer_image' width='20px' >&nbsp;
+</li><!-- li Ends -->
 
-";
+<li class="divider"></li>
 
-}
+<li><!-- li Starts -->
 
-echo "
+<a href="logout.php">
 
-<li style='background:#dddddd;' class='checkbox checkbox-primary'>
+<i class="fa fa-fw fa-power-off"> </i> Log Out
 
-<a>
+</a>
 
-<label>
+</li><!-- li Ends -->
 
-<input ";
+</ul><!-- dropdown-menu Ends -->
 
-if(isset($aMan[$manufacturer_id])){ echo "checked='checked'"; }
 
-echo " type='checkbox' value='$manufacturer_id' name='manufacturer' class='get_manufacturer'>
 
-<span>
-$manufacturer_image
-$manufacturer_title
-</span>
 
-</label>
+</li><!-- dropdown Ends -->
+
+
+</ul><!-- nav navbar-right top-nav Ends -->
+
+<div class="collapse navbar-collapse navbar-ex1-collapse"><!-- collapse navbar-collapse navbar-ex1-collapse Starts -->
+
+<ul class="nav navbar-nav side-nav"><!-- nav navbar-nav side-nav Starts -->
+
+<li><!-- li Starts -->
+
+<!--<a href="index.php?dashboard">
+
+<i class="fa fa-fw fa-dashboard"></i> Dashboard
+
+</a>
+
+</li><!-- li Ends -->
+
+<li><!-- Products li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#products">
+
+<i class="fa fa-fw fa-table"></i> Products
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="products" class="collapse">
+
+<li>
+<a href="index.php?insert_product"> Insert Products </a>
+</li>
+
+<li>
+<a href="index.php?view_products"> View Products </a>
+</li>
+
+
+</ul>
+
+</li><!-- Products li Ends -->
+
+<li><!-- Bundles Li Starts --->
+
+<!--<a href="#" data-toggle="collapse" data-target="#bundles">
+
+<i class="fa fa-fw fa-edit"></i> Bundles
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a>
+
+<ul id="bundles" class="collapse">
+
+<li>
+<a href="index.php?insert_bundle"> Insert Bundle </a>
+</li>
+
+<li>
+<a href="index.php?view_bundles"> View Bundles </a>
+</li>
+
+</ul>
+
+</li><!-- Bundles Li Ends --->
+
+<li><!-- relations li Starts 
+
+<a href="#" data-toggle="collapse" data-target="#relations"><!-- anchor Starts 
+
+<i class="fa fa-fw fa-retweet"></i> Assign Products To Bundles Relations
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a><!-- anchor Ends 
+
+<ul id="relations" class="collapse"><!-- collapse Starts
+
+<li>
+
+<a href="index.php?insert_rel"> Insert Relation </a>
+
+</li>
+
+
+<li>
+
+<a href="index.php?view_rel"> View Relations </a>
+
+</li>
+
+</ul><!-- collapse Ends 
+
+
+</li><!-- relations li Ends -->
+
+
+
+<li><!-- manufacturer li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#manufacturers"><!-- anchor Starts -->
+
+<i class="fa fa-fw fa-briefcase"></i> Manufacturers
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a><!-- anchor Ends -->
+
+<ul id="manufacturers" class="collapse"><!-- ul collapse Starts -->
+
+<li>
+<a href="index.php?insert_manufacturer"> Insert Manufacturer </a>
+</li>
+
+<li>
+<a href="index.php?view_manufacturers"> View Manufacturers </a>
+</li>
+
+</ul><!-- ul collapse Ends -->
+
+
+</li><!-- manufacturer li Ends -->
+
+
+<li><!-- li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#p_cat">
+
+<i class="fa fa-fw fa-pencil"></i> Products Categories
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+
+</a>
+
+<ul id="p_cat" class="collapse">
+
+<li>
+<a href="index.php?insert_p_cat"> Insert Product Category </a>
+</li>
+
+<li>
+<a href="index.php?view_p_cats"> View Products Categories </a>
+</li>
+
+
+</ul>
+
+</li><!-- li Ends -->
+
+
+<li><!-- li Starts -->
+
+<a href="#" data-toggle="collapse" data-target="#cat">
+
+<i class="fa fa-fw fa-arrows-v"></i> Categories
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a>
+
+<ul id="cat" class="collapse">
+
+<li>
+<a href="index.php?insert_cat"> Insert Category </a>
+</li>
+
+<li>
+<a href="index.php?view_cats"> View Categories </a>
+</li>
+
+
+</ul>
+
+</li><!-- li Ends -->
+
+
+
+<li><!-- store section li Starts -->
+
+<!--<a href="#" data-toggle="collapse" data-target="#store">
+
+<<i class="fa fa-fw fa-briefcase"></i> Stores
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a>
+
+<ul id="store" class="collapse">
+
+<li>
+<a href="index.php?insert_store"> Insert store </a>
+</li>
+
+<li>
+<a href="index.php?view_store"> View store </a>
+</li>
+
+</ul>
+
+</li><!-- store section li Ends 
+
+
+<li><!-- contact us li Starts 
+
+<a href="#" data-toggle="collapse" data-target="#contact_us"><!-- anchor Starts -->
+
+<!--<i class="fa fa-fw fa-pencil"> </i> Contact Us Section
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a><!-- anchor Ends 
+
+<ul id="contact_us" class="collapse">
+
+<li>
+
+<a href="index.php?edit_contact_us"> Edit Contact Us </a>
+
+</li>
+
+<li>
+
+<a href="index.php?insert_enquiry"> Insert Enquiry Type </a>
+
+</li>
+
+<li>
+
+<a href="index.php?view_enquiry"> View Enquiry Types </a>
+
+</li>
+
+</ul>
+
+</li><!-- contact us li Ends -->
+
+<li><!-- about us li Starts -->
+
+<a href="index.php?edit_about_us">
+
+<i class="fa fa-fw fa-edit"></i> Edit About Us Page
+
+</a>
+
+</li><!-- about us li Ends -->
+
+
+<!--<li><!-- Coupons Section li Starts 
+
+<a href="#" data-toggle="collapse" data-target="#coupons"><!-- anchor Starts 
+
+<i class="fa fa-fw fa-arrows-v"></i> Coupons
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a><!-- anchor Ends 
+
+<ul id="coupons" class="collapse"><!-- ul collapse Starts 
+
+<li>
+<a href="index.php?insert_coupon"> Insert Coupon </a>
+</li>
+
+<li>
+<a href="index.php?view_coupons"> View Coupons </a>
+</li>
+
+</ul><!-- ul collapse Ends 
+
+</li><!-- Coupons Section li Ends 
+
+
+
+<li><!-- terms li Starts 
+
+<a href="#" data-toggle="collapse" data-target="#terms" ><!-- anchor Starts -
+
+<i class="fa fa-fw fa-table"></i> Terms
+
+<i class="fa fa-fw fa-caret-down"></i>
+
+</a><!-- anchor Ends 
+
+<ul id="terms" class="collapse"><!-- ul collapse Starts 
+
+<li>
+<a href="index.php?insert_term"> Insert Terms </a> 
+</li>
+
+<li>
+<a href="index.php?view_terms"> View Terms </a> 
+</li>
+
+</ul><!-- ul collapse Ends 
+
+
+</li><!-- terms li Ends -->
+
+
+
+<li>
+
+<a href="index.php?view_customers">
+
+<i class="fa fa-fw fa-edit"></i> View Customers
 
 </a>
 
 </li>
 
-";
+<!--<li>
 
+a href="index.php?view_orders">
 
-}
-
-
-$get_manfacturer = "select * from manufacturers where manufacturer_top='no'";
-
-$run_manfacturer = mysqli_query($con,$get_manfacturer);
-
-while($row_manfacturer = mysqli_fetch_array($run_manfacturer)){
-
-$manufacturer_id = $row_manfacturer['manufacturer_id'];
-
-$manufacturer_title = $row_manfacturer['manufacturer_title'];
-
-$manufacturer_image = $row_manfacturer['manufacturer_image'];
-
-if($manufacturer_image == ""){
-
-
-}
-else{
-
-$manufacturer_image = "
-
-<img src='admin_area/other_images/$manufacturer_image' width='20px'> &nbsp;
-
-";
-
-}
-
-echo "
-
-<li class='checkbox checkbox-primary'>
-
-<a>
-
-<label>
-
-<input ";
-
-if(isset($aMan[$manufacturer_id])){ echo "checked='checked'"; }
-
-echo " type='checkbox' value='$manufacturer_id' name='manufacturer' class='get_manufacturer'>
-
-<span>
-$manufacturer_image
-$manufacturer_title
-</span>
-
-</label>
+<i class="fa fa-fw fa-list"></i> View Orders
 
 </a>
 
 </li>
 
-";
+<li>
 
-}
+<a href="index.php?view_payments">
 
-?>
-
-</ul><!-- nav nav-pills nav-stacked category-menu Ends -->
-
-</div><!-- panel-body scroll-menu Ends -->
-
-</div><!-- panel-collapse collapse-data Ends -->
-
-
-</div><!-- panel panel-default sidebar-menu Ends -->
-
-
-<div class="panel panel-default sidebar-menu"><!--- panel panel-default sidebar-menu Starts -->
-
-<div class="panel-heading"><!-- panel-heading Starts -->
-
-<h3 class="panel-title"><!-- panel-title Starts -->
-
-Products Categories
-
-<div class="pull-right"><!-- pull-right Starts -->
-
-<a href="#" style="color:black;">
-
-<span class="nav-toggle hide-show">
-
-Hide
-
-</span>
+<i class="fa fa-fw fa-pencil"></i> View Payments
 
 </a>
 
-</div><!-- pull-right Ends -->
+</li>-->
 
-</h3><!-- panel-title Ends -->
+<li>
 
-</div><!-- panel-heading Ends -->
+<a href="#" data-toggle="collapse" data-target="#users">
 
-<div class="panel-collapse collapse-data"><!-- panel-collapse collapse-data Starts -->
+<i class="fa fa-fw fa-gear"></i> Users
 
-<div class="panel-body"><!-- panel-body Starts -->
+<i class="fa fa-fw fa-caret-down"></i>
 
-<div class="input-group"><!-- input-group Starts -->
-
-<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-p-cats" placeholder="Filter Product Categories">
-
-<a class="input-group-addon"> <i class="fa fa-search"></i> </a>
-
-</div><!-- input-group Ends -->
-
-</div><!-- panel-body Ends -->
-
-<div class="panel-body scroll-menu"><!-- panel-body scroll-menu Starts -->
-
-<ul class="nav nav-pills nav-stacked category-menu" id="dev-p-cats"><!-- nav nav-pills nav-stacked category-menu Starts -->
-
-<?php
-
-$get_p_cats = "select * from product_categories where p_cat_top='yes'";
-
-$run_p_cats = mysqli_query($con,$get_p_cats);
-
-while($row_p_cats = mysqli_fetch_array($run_p_cats)){
-
-$p_cat_id = $row_p_cats['p_cat_id'];
-
-$p_cat_title = $row_p_cats['p_cat_title'];
-
-$p_cat_image = $row_p_cats['p_cat_image'];
-
-if($p_cat_image == ""){
-
-
-}
-else{
-
-$p_cat_image = "<img src='admin_area/other_images/$p_cat_image' width='20'> &nbsp;";
-
-}
-
-echo "
-
-<li class='checkbox checkbox-primary' style='background:#dddddd;' >
-
-<a>
-
-<label>
-
-<input ";
-
-if(isset($aPCat[$p_cat_id])){ echo "checked='checked'"; }
-
-echo " type='checkbox' value='$p_cat_id' name='p_cat' class='get_p_cat' id='p_cat' >
-
-<span>
-
-$p_cat_image
-$p_cat_title
-
-</span>
-
-</label>
 
 </a>
 
+<ul id="users" class="collapse">
+
+<li>
+<a href="index.php?insert_user"> Insert User </a>
 </li>
 
-";
-
-
-}
-
-$get_p_cats = "select * from product_categories where p_cat_top='no'";
-
-$run_p_cats = mysqli_query($con,$get_p_cats);
-
-while($row_p_cats = mysqli_fetch_array($run_p_cats)){
-
-$p_cat_id = $row_p_cats['p_cat_id'];
-
-$p_cat_title = $row_p_cats['p_cat_title'];
-
-$p_cat_image = $row_p_cats['p_cat_image'];
-
-if($p_cat_image == ""){
-
-
-}
-else{
-
-$p_cat_image = "<img src='admin_area/other_images/$p_cat_image' width='20'> &nbsp;";
-
-}
-
-echo "
-
-<li class='checkbox checkbox-primary'>
-
-<a>
-
-<label>
-
-<input ";
-
-if(isset($aPCat[$p_cat_id])){ echo "checked='checked'"; }
-
-echo " type='checkbox' value='$p_cat_id' name='p_cat' class='get_p_cat' id='p_cat' >
-
-<span>
-
-$p_cat_image
-$p_cat_title
-
-</span>
-
-</label>
-
-</a>
-
+<li>
+<a href="index.php?view_users"> View Users </a>
 </li>
 
-";
-
-
-}
-
-?>
-
-</ul><!-- nav nav-pills nav-stacked category-menu Ends -->
-
-</div><!-- panel-body scroll-menu Ends -->
-
-</div><!-- panel-collapse collapse-data Ends -->
-
-</div><!--- panel panel-default sidebar-menu Ends -->
-
-
-
-<div class="panel panel-default sidebar-menu"><!--- panel panel-default sidebar-menu Starts -->
-
-<div class="panel-heading"><!-- panel-heading Starts -->
-
-<h3 class="panel-title"><!-- panel-title Starts -->
-
-Categories
-
-<div class="pull-right"><!-- pull-right Starts -->
-
-<a href="#" style="color:black;">
-
-<span class="nav-toggle hide-show">
-
-Hide
-
-</span>
-
-</a>
-
-</div><!-- pull-right Ends -->
-
-
-</h3><!-- panel-title Ends -->
-
-</div><!-- panel-heading Ends -->
-
-<div class="panel-collapse collapse-data"><!-- panel-collapse collapse-data Starts -->
-
-<div class="panel-body"><!-- panel-body Starts -->
-
-<div class="input-group"><!-- input-group Starts -->
-
-<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-cats" placeholder="Filter Categories">
-
-<a class="input-group-addon"> <i class="fa fa-search"> </i> </a>
-
-</div><!-- input-group Ends -->
-
-</div><!-- panel-body Ends -->
-
-<div class="panel-body scroll-menu"><!-- panel-body scroll-menu Starts -->
-
-<ul class="nav nav-pills nav-stacked category-menu" id="dev-cats"><!-- nav nav-pills nav-stacked category-menu Starts -->
-
-<?php
-
-$get_cat = "select * from categories where cat_top='yes'";
-
-$run_cat = mysqli_query($con,$get_cat);
-
-while($row_cat = mysqli_fetch_array($run_cat)){
-
-$cat_id = $row_cat['cat_id'];
-
-$cat_title = $row_cat['cat_title'];
-
-$cat_image = $row_cat['cat_image'];
-
-if($cat_image == ""){
-
-}
-else{
-
-$cat_image = "<img src='admin_area/other_images/$cat_image' width='20'>&nbsp;";
-
-}
-
-echo "
-
-<li class='checkbox checkbox-primary' style='background:#dddddd;'>
-
-<a>
-
-<label>
-
-<input ";
-
-if(isset($aCat[$cat_id])){ echo "checked='checked'"; }
-
-echo " type='checkbox' value='$cat_id' name='cat' class='get_cat' id='cat'> 
-
-<span>
-$cat_image
-$cat_title
-</span>
-
-</label>
-
-</a>
-
+<!--<li>
+<a href="index.php?user_profile=<?php echo $admin_id; ?>"> Edit Profile </a>
 </li>
 
-";
+</ul>
 
-}
+</li><!-- li Ends 
 
+<li><!-- li Starts 
 
-$get_cat = "select * from categories where cat_top='no'";
+<a href="logout.php">
 
-$run_cat = mysqli_query($con,$get_cat);
-
-while($row_cat = mysqli_fetch_array($run_cat)){
-
-$cat_id = $row_cat['cat_id'];
-
-$cat_title = $row_cat['cat_title'];
-
-$cat_image = $row_cat['cat_image'];
-
-if($cat_image == ""){
-
-}
-else{
-
-$cat_image = "<img src='admin_area/other_images/$cat_image' width='20'>&nbsp;";
-
-}
-
-echo "
-
-<li class='checkbox checkbox-primary'>
-
-<a>
-
-<label>
-
-<input ";
-
-if(isset($aCat[$cat_id])){ echo "checked='checked'"; }
-
-echo " type='checkbox' value='$cat_id' name='cat' class='get_cat' id='cat'> 
-
-<span>
-$cat_image
-$cat_title
-</span>
-
-</label>
+<i class="fa fa-fw fa-power-off"></i> Log Out
 
 </a>
 
-</li>
+</li><!-- li Ends -->
 
-";
+</ul><!-- nav navbar-nav side-nav Ends -->
 
-}
+</div><!-- collapse navbar-collapse navbar-ex1-collapse Ends -->
 
+</nav><!-- navbar navbar-inverse navbar-fixed-top Ends -->
 
-?>
-
-</ul><!-- nav nav-pills nav-stacked category-menu Ends -->
-
-</div><!-- panel-body scroll-menu Ends -->
-
-</div><!-- panel-collapse collapse-data Ends -->
-
-</div><!--- panel panel-default sidebar-menu Ends -->
+<?php } ?>

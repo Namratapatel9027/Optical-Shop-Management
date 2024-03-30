@@ -9,12 +9,10 @@
 					<li class="footer-nav__item">
 						<a href="#" class="footer-nav__link">The brand</a>
 					</li>
-					
-					
 					<li class="footer-nav__item">
-						<a href="#" class="footer-nav__link">Customer service</a>
+						<a href="#" class="footer-nav__link">Local stores</a>
 					</li>
-					
+				
 				</ul>
 			</div>
 
@@ -27,7 +25,15 @@
 					<li class="footer-nav__item">
 						<a href="#" class="footer-nav__link">Secure shipping</a>
 					</li>
-					
+					<li class="footer-nav__item">
+						<a href="#" class="footer-nav__link">Testimonials</a>
+					</li>
+					<li class="footer-nav__item">
+						<a href="#" class="footer-nav__link">Award winning</a>
+					</li>
+					<li class="footer-nav__item">
+						<a href="#" class="footer-nav__link">Ethical trading</a>
+					</li>
 				</ul>
 			</div> -->
 
@@ -40,28 +46,54 @@
 					<li class="footer-nav__item">
 						<a href="#" class="footer-nav__link">Register</a>
 					</li>
-				
+					
 				</ul>
 			</div>
 
+			<!--<div class="footer-nav__col footer-nav__col--lookbook">
+				<div class="footer-nav__heading">Lookbook</div>
+				<ul class="footer-nav__list">
+					<li class="footer-nav__item">
+						<a href="#" class="footer-nav__link">Latest posts</a>
+					</li>
+					<li class="footer-nav__item">
+						<a href="#" class="footer-nav__link">Men&apos;s lookbook</a>
+					</li>
+					<li class="footer-nav__item">
+						<a href="#" class="footer-nav__link">Women&apos;s lookbook</a>
+					</li>
+					<li class="footer-nav__item">
+						<a href="#" class="footer-nav__link">Lookbooks RSS feed</a>
+					</li>
+					<li class="footer-nav__item">
+						<a href="#" class="footer-nav__link">View your lookbook</a>
+					</li>
+					<li class="footer-nav__item">
+						<a href="#" class="footer-nav__link">Delete your lookbook</a>
+					</li>
+				</ul>
+			</div>-->
 
 			<div class="footer-nav__col footer-nav__col--contacts">
 				<div class="footer-nav__heading">Contact details</div>
 				<address class="address">
-				Head Office: Opticals Fashion.<br>
-				PSGVPM, SHAHADA.
+				Head Office: Opticos.<br>
+				PSGVPM, Shahada.
 			</address>
 				<div class="phone">
 					Telephone:
 					<a class="phone__number" href="tel:0123456789">0123-456-789</a>
 				</div>
-				
+				<div class="email">
+					Email:
+					<a href="optical@gmail.com" class="email__addr">optical@gmail.com</a>
+				</div>
 			</div>
 
 		</div>
 	</div>
 
-	<!-- <div class="banners">
+	<!--<div class="banners">
 		<div class="container clearfix">
 
 			<div class="banner-award">
@@ -90,7 +122,7 @@
 		<div class="container clearfix">
 
 			<div class="copyright">
-				&copy; 2023 Opticals Fashion&trade;
+				&copy; 2023 Optical Fashion&trade;
 			</div>
 
 			<div class="developer">
